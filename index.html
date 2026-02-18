@@ -1,98 +1,134 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Study Simulators</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<title>Pendulum Simulator</title>
+
 <style>
-    * { box-sizing: border-box; margin:0; padding:0; }
-    body { font-family: 'Roboto', sans-serif; line-height: 1.6; color:#333; }
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    background: linear-gradient(to bottom, #e8f5e9, #ffffff);
+}
 
-    header { background:#4CAF50; color:white; padding:20px 10px; text-align:center; position:sticky; top:0; z-index:1000; }
-    header h1 { margin-bottom:10px; }
-    nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; transition:0.3s; }
-    nav a:hover { color:#ffd700; }
+/* Title */
+h1 {
+    margin-top: 20px;
+    color: #2e7d32;
+}
 
-    .hero { padding:80px 20px; text-align:center; background:linear-gradient(to right, #76c893, #4CAF50); color:white; }
-    .hero h2 { font-size:2.2rem; margin-bottom:20px; color:black}
-    .hero button { padding:12px 25px; font-size:16px; border:none; border-radius:5px; background:#ffd700; color:#333; cursor:pointer; transition:0.3s; }
-    .hero button:hover { background:#e6c200; }
+/* Pendulum container */
+.pendulum-box {
+    width: 320px;
+    height: 320px;
+    margin: 30px auto;
+    position: relative;
+}
 
-    .simulators { display:flex; flex-wrap:wrap; justify-content:center; padding:60px 20px; gap:30px; background:#f4f4f4; }
-    .sim-card { background:white; border-radius:12px; width:280px; padding:25px; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition:0.3s; }
-    .sim-card:hover { transform:translateY(-10px); box-shadow:0 10px 20px rgba(0,0,0,0.15); }
-    .sim-card h3 { margin-bottom:15px; color:#4CAF50; }
-    .sim-card p { margin-bottom:20px; font-size:0.95rem; }
-    .sim-card button { padding:10px 18px; border:none; border-radius:5px; background:#4CAF50; color:white; cursor:pointer; transition:0.3s; }
-    .sim-card button:hover { background:#388e3c; }
+/* String */
+.string {
+    width: 3px;
+    height: 200px;
+    background: #333;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform-origin: top;
+}
 
-    section { padding:60px 20px; text-align:center; }
-    section:nth-child(even) { background:#f4f4f4; }
+/* Bob */
+.bob {
+    width: 44px;
+    height: 44px;
+    background: radial-gradient(circle at 30% 30%, #4CAF50, #1b5e20);
+    border-radius: 50%;
+    position: absolute;
+    left: -21px;
+    bottom: -44px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+}
 
-    footer { background:#333; color:white; text-align:center; padding:25px; margin-top:30px; }
+/* Controls */
+.controls {
+    margin-top: 20px;
+}
 
-    @media(max-width:768px) {
-        .simulators { flex-direction:column; align-items:center; }
-        .sim-card { width:90%; }
-    }
+input[type="range"] {
+    width: 250px;
+}
+
+.info {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+}
 </style>
 </head>
+
 <body>
 
-<header>
-    <h1>Study With Sims</h1>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#simulators">Simulators</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
+<h1>Pendulum Simulator</h1>
 
-<section class="hero" id="home">
-    <h2>Learn by Doing – Interactive Study </h2>
-    <button onclick="document.getElementById('simulators').scrollIntoView({behavior:'smooth'});">Try Simulators</button>
-</section>
-
-<section class="simulators" id="simulators">
-    <div class="sim-card">
-        <h3>Projectile Simulator</h3>
-        <p>Visualize projectile motion with adjustable angle and speed.</p>
-         <button onclick="window.location.href='pp.html';">Open Simulator</button>
+<div class="pendulum-box">
+    <div class="string" id="string">
+        <div class="bob"></div>
+    </div>
 </div>
-    </div>
-    <div class="sim-card">
-        <h3>Pendulum Simulator</h3>
-        <p>See pendulum motion and calculate period easily.</p>
-        <button onclick="window.location.href='pendulum.html';">Open Simulator</button>
-    </div>
-    <div class="sim-card">
-        <h3>Circuit Simulator</h3>
-        <p>Build simple circuits and understand current flow.</p>
-        <button onclick="alert('Simulator coming soon!')">Open Simulator</button>
-    </div>
-    <div class="sim-card">
-        <h3>Wave Simulator</h3>
-        <p>Explore wave properties like frequency, amplitude, and speed.</p>
-        <button onclick="alert('Simulator coming soon!')">Open Simulator</button>
-    </div>
-</section>
 
-<section id="about">
-    <h2>About Us</h2>
-    <p>We provide free interactive study simulators to help students understand complex concepts visually and easily. Learn, experiment, and master science concepts with our tools!</p>
-</section>
+<div class="controls">
+    <label>Length (m): </label>
+    <input type="range" id="lengthSlider" min="0.5" max="2" step="0.1" value="1">
+    <span id="lengthValue">1</span> m
+</div>
 
-<section id="contact">
-    <h2>Contact</h2>
-    <p>Email: harpreetsinghsehgal77@gmail.com</p>
-</section>
+<div class="info">
+    Period: <span id="period">2.01</span> s
+</div>
 
-<footer>
-    &copy; 2025 StudyWithSims. All rights reserved.
-</footer>
+<script>
+let angle = 30;
+let direction = 1;
+let length = 1; // meters
+const g = 9.8;
+
+const string = document.getElementById("string");
+const slider = document.getElementById("lengthSlider");
+const lengthValue = document.getElementById("lengthValue");
+const periodText = document.getElementById("period");
+
+/* Update period using physics formula */
+function updatePeriod() {
+    const T = 2 * Math.PI * Math.sqrt(length / g);
+    periodText.textContent = T.toFixed(2);
+}
+
+/* Slider control */
+slider.addEventListener("input", () => {
+    length = parseFloat(slider.value);
+    lengthValue.textContent = length;
+
+    /* Adjust string length visually */
+    string.style.height = (200 * length) + "px";
+
+    updatePeriod();
+});
+
+/* Smooth pendulum motion */
+function animatePendulum() {
+    angle += direction * 0.25;
+
+    if (angle > 30 || angle < -30) direction *= -1;
+
+    string.style.transform = rotate(${angle}deg);
+
+    requestAnimationFrame(animatePendulum);
+}
+
+updatePeriod();
+animatePendulum();
+</script>
 
 </body>
 </html>
